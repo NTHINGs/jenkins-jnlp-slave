@@ -139,6 +139,14 @@ RUN \
         ; \
     fi
 
+ENV KUBECTL_VERSION=v1.16.0
+RUN \
+    echo "Installing kubectl" \
+    ; \
+    curl -LO https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl \
+    && chmod +x ./kubectl \
+    && mv ./kubectl /usr/bin/kubectl
+
 COPY entrypoint.sh /entrypoint.sh
 
 ## https://github.com/docker-library/docker/blob/fe2ca76a21fdc02cbb4974246696ee1b4a7839dd/18.06/modprobe.sh
